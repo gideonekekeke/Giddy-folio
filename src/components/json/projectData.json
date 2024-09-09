@@ -1,38 +1,38 @@
 [
 	{
 		"title": "Vital Signs Monitoring",
-		"image": "/public/project/pro1.png",
+		"image": "../../project/pro1.png",
 		"description": "A video-based vital signs monitoring App that helps you keep track of important health information",
 		"link": "https://vsm.health"
 	},
 	{
 		"title": "Myservices",
-		"image": "/public/project/pro2.png",
+		"image": "../../project/pro2.png",
 		"description": "Myservice links you with the best handyman and artisians near you.and deliever an amazing job",
 		"link": "https://myservices.netlify.app"
 	},
 	{
 		"title": "Expense Tracker",
-		"image": "/public/project/pro3.png",
+		"image": "../../project/pro3.png",
 		"description": "A web app that helps you keep track of your day to day business transactions and expenses ",
 		"link": "https://expense-fe.vercel.app/"
 	},
 	{
 		"title": "NYCN Vote",
-		"image": "/public/project/pro4.png",
+		"image": "../../project/pro4.png",
 		"description": "An Easy Online Election Excellence",
 		"link": "https://nycnvote.netlify.app"
 	},
 	{
 		"title": "Phoenix",
-		"image": "/public/project/pro5.png",
+		"image": "../../project/pro5.png",
 		"description": "From the School Admin, Teachers, Students down to the Parents. Phoenix is here to provide learning facilitated by technology that gives students some element of control over time, place, path and/or pace",
 		"link": "https://your-phoenix.web.app/"
 	},
 
 	{
 		"title": "BagOne",
-		"image": "/public/project/pro6.png",
+		"image": "../../project/pro6.png",
 		"description": "An E-comerce platform when you get quality and simple handbags",
 		"link": "https://bag-one.vercel.app/"
 	}
