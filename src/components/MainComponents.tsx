@@ -1,10 +1,24 @@
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import pic from "../assets/4.jpeg";
 import pic2 from "../assets/5.jpeg";
 import Projects from "./Projects";
 import projectData from "@/components/json/projectData.json";
+import { RiNextjsFill } from "react-icons/ri";
+import { FaReact } from "react-icons/fa";
+import { FaNode } from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io5";
+import { SiTypescript } from "react-icons/si";
+import { FaHtml5 } from "react-icons/fa";
+import { FaCss3 } from "react-icons/fa";
+import { BiLogoTailwindCss } from "react-icons/bi";
+import { SiMongodb } from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { SiSvelte } from "react-icons/si";
+import { SiRedux } from "react-icons/si";
+import { FaFigma } from "react-icons/fa";
+import { SiTestinglibrary } from "react-icons/si";
+import { FaDocker } from "react-icons/fa";
+import { SiExpress } from "react-icons/si";
+import { useState } from "react";
 
 interface Project {
 	title: string;
@@ -13,7 +27,46 @@ interface Project {
 	link: string;
 }
 export default function Component() {
-	console.log(projectData);
+	const [formState, setFormState] = useState({
+		name: "",
+		email: "",
+		message: "",
+	});
+
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [feedbackMessage, setFeedbackMessage] = useState("");
+
+	const handleChange = (e: any) => {
+		const { name, value } = e.target;
+		setFormState({ ...formState, [name]: value });
+	};
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+
+		try {
+			const response = await fetch("https://formspree.io/f/mldenkde", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formState),
+			});
+
+			if (response.ok) {
+				setFeedbackMessage("Thank you! Your message has been sent.");
+				setFormState({ name: "", email: "", message: "" }); // Reset form
+			} else {
+				setFeedbackMessage("Oops! Something went wrong. Please try again.");
+			}
+		} catch (error) {
+			setFeedbackMessage("There was a problem submitting your form.");
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+	// console.log(projectData);
 	return (
 		<div className='flex flex-col min-h-[100dvh]'>
 			<header className='bg-background border-b px-4 lg:px-6 h-14 flex items-center'>
@@ -150,7 +203,7 @@ export default function Component() {
 									Contact Me
 								</a>
 								<a
-									href="../project/Gideon's Resume.pdf"
+									href='../project/Gideon_Fullstack_cv.pdf'
 									download="Gideon's Resume.pdf"
 									className='inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'>
 									Download CV
@@ -175,36 +228,68 @@ export default function Component() {
 						</div>
 						<div className='mx-auto grid max-w-5xl grid-cols-2 gap-6 py-12 sm:grid-cols-3 md:grid-cols-4 lg:gap-12'>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<CodepenIcon className='h-12 w-12' />
+								<FaReact className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>React</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<CodepenIcon className='h-12 w-12' />
+								<SiRedux className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Redux</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<SiExpress className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Express</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<FaNode className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>Node.js</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<EclipseIcon className='h-12 w-12' />
+								<IoLogoJavascript className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>JavaScript</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<TypeIcon className='h-12 w-12' />
+								<SiTypescript className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>TypeScript</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<HashIcon className='h-12 w-12' />
+								<FaHtml5 className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>HTML</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<CodepenIcon className='h-12 w-12' />
+								<FaCss3 className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>CSS</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<WindIcon className='h-12 w-12' />
+								<BiLogoTailwindCss className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>Tailwind CSS</h3>
 							</div>
 							<div className='flex flex-col items-center justify-center space-y-2'>
-								<DatabaseIcon className='h-12 w-12' />
+								<SiMongodb className='h-12 w-12' />
 								<h3 className='text-lg font-semibold'>MongoDB</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<BiLogoPostgresql className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Postgresql</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<RiNextjsFill className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Next Js</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<SiSvelte className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>SvelteKit</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<FaFigma className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Figma</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<SiTestinglibrary className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Jest Testing</h3>
+							</div>
+							<div className='flex flex-col items-center justify-center space-y-2'>
+								<FaDocker className='h-12 w-12' />
+								<h3 className='text-lg font-semibold'>Docker</h3>
 							</div>
 						</div>
 					</div>
@@ -223,114 +308,61 @@ export default function Component() {
 							</p>
 						</div>
 						<div className='mx-auto w-full max-w-sm space-y-2'>
-							<form className='flex flex-col gap-4'>
-								<Input type='text' placeholder='Name' className='w-full' />
-								<Input type='email' placeholder='Email' className='w-full' />
-								<Textarea placeholder='Message' className='w-full' rows={5} />
-								<Button type='submit' className='w-full'>
-									Submit
-								</Button>
+							<form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+								<input
+									type='text'
+									name='name'
+									value={formState.name}
+									onChange={handleChange}
+									placeholder='Name'
+									className='w-full p-2 border rounded'
+									required
+								/>
+								<input
+									type='email'
+									name='email'
+									value={formState.email}
+									onChange={handleChange}
+									placeholder='Email'
+									className='w-full p-2 border rounded'
+									required
+								/>
+								<textarea
+									name='message'
+									value={formState.message}
+									onChange={handleChange}
+									placeholder='Message'
+									className='w-full p-2 border rounded'
+									rows={5}
+									required
+								/>
+								<button
+									type='submit'
+									className='w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+									disabled={isSubmitting}>
+									{isSubmitting ? "Submitting..." : "Submit"}
+								</button>
 							</form>
+							{feedbackMessage && (
+								<p className='text-sm text-green-600 mt-2'>{feedbackMessage}</p>
+							)}
 						</div>
 					</div>
 				</section>
 			</main>
 			<footer className='flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t'>
 				<p className='text-xs text-muted-foreground'>
-					&copy; 2024 Gideon Ekeke. All rights reserved.
+					&copy; 2025 Gideon Ekeke. All rights reserved.
 				</p>
 				<nav className='sm:ml-auto flex gap-4 sm:gap-6'>
-					<a href='#' className='text-xs hover:underline underline-offset-4'>
-						Privacy
-					</a>
-					<a href='#' className='text-xs hover:underline underline-offset-4'>
-						Terms of Service
+					<a
+						href='https://github.com/gideonekekeke'
+						className='text-xs hover:underline underline-offset-4'>
+						Github Profile
 					</a>
 				</nav>
 			</footer>
 		</div>
-	);
-}
-
-function CodepenIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<polygon points='12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2' />
-			<line x1='12' x2='12' y1='22' y2='15.5' />
-			<polyline points='22 8.5 12 15.5 2 8.5' />
-			<polyline points='2 15.5 12 8.5 22 15.5' />
-			<line x1='12' x2='12' y1='2' y2='8.5' />
-		</svg>
-	);
-}
-
-function DatabaseIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<ellipse cx='12' cy='5' rx='9' ry='3' />
-			<path d='M3 5V19A9 3 0 0 0 21 19V5' />
-			<path d='M3 12A9 3 0 0 0 21 12' />
-		</svg>
-	);
-}
-
-function EclipseIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<circle cx='12' cy='12' r='10' />
-			<path d='M12 2a7 7 0 1 0 10 10' />
-		</svg>
-	);
-}
-
-function HashIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<line x1='4' x2='20' y1='9' y2='9' />
-			<line x1='4' x2='20' y1='15' y2='15' />
-			<line x1='10' x2='8' y1='3' y2='21' />
-			<line x1='16' x2='14' y1='3' y2='21' />
-		</svg>
 	);
 }
 
@@ -350,46 +382,6 @@ function MountainIcon(props: any) {
 			<path d='M7 13l-4-4 4-4' />
 			<path d='M17 13l4-4-4-4' />
 			<line x1='3' y1='21' x2='21' y2='3' />
-		</svg>
-	);
-}
-
-function TypeIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<polyline points='4 7 4 4 20 4 20 7' />
-			<line x1='9' x2='15' y1='20' y2='20' />
-			<line x1='12' x2='12' y1='4' y2='20' />
-		</svg>
-	);
-}
-
-function WindIcon(props: any) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='currentColor'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'>
-			<path d='M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2' />
-			<path d='M9.6 4.6A2 2 0 1 1 11 8H2' />
-			<path d='M12.6 19.4A2 2 0 1 0 14 16H2' />
 		</svg>
 	);
 }

@@ -1,5 +1,17 @@
 [
 	{
+		"title": "SignalADoc Production",
+		"image": "https://healthtalks.signaladoc.com/assets/HeroImage-CiUIoCbi.png",
+		"description": "A platform created for you to watch quality health videos that talks about your health",
+		"link": "https://healthtalks.signaladoc.com/"
+	},
+	{
+		"title": "WeddingPlan 101",
+		"image": "https://weddingplan101.com/assets/How%20to%20pick%20a%20wedding%20dress%20that%20suits%20you-DJxhI5ye.png",
+		"description": "Wedding plan 101 new App was born out of a passion for love, celebrations, and the desire to make wedding planning a stress-free and enjoyable experience",
+		"link": "https://weddingplan101.com"
+	},
+	{
 		"title": "Vital Signs Monitoring",
 		"image": "../../project/pro1.png",
 		"description": "A video-based vital signs monitoring App that helps you keep track of important health information",
